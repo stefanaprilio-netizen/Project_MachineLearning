@@ -342,7 +342,73 @@ Jalankan cell secara berurutan (1 → 13):
 
 ---
 
-## 📈 Metrik & Evaluasi
+## **Rekomendasi Versi Library (Teruji — Python 3.13)**
+
+Versi library yang telah diuji pada lingkungan Python 3.13 (diterapkan pada repository ini per 2026-02-05):
+
+| Library | Versi Teruji | Catatan |
+|---------|--------------|---------|
+| Python | 3.13.x | Target project; jangan gunakan 3.14+ untuk TensorFlow saat ini |
+| pip | 26.0.1 | Upgrade via `pip install --upgrade pip`
+| pandas | 2.3.3 | Digunakan untuk data handling di notebook
+| numpy | 2.4.2 | Dependensi numerik utama
+| matplotlib | 3.10.8 | Visualisasi
+| seaborn | 0.13.2 | Plotting statistik
+| scikit-learn | 1.8.0 | Algoritma ML klasik
+| statsmodels | 0.14.6 | Analisis time-series/statistik
+| tensorflow | 2.17.0 | Kompatibel dengan Python 3.13 (hindari 2.18+)
+| keras | 3.0.0 | Disertakan dalam TensorFlow
+| mlflow | 3.9.0 | Experiment tracking lokal
+| prophet | 1.3.0 | Time-series forecasting
+| optuna | 4.7.0 | Hyperparameter tuning
+| joblib | 1.5.3 | Serialisasi model
+| pandera | 0.29.0 | Data validation
+| lightgbm | 4.5.0 | Gradient boosting
+
+### Instalasi Versi Teruji (Python 3.13)
+
+Gunakan perintah ini untuk menginstal versi-versi yang telah diuji pada lingkungan proyek:
+
+```bash
+# Buat dan aktifkan venv (Windows)
+py -3.13 -m venv .venv
+.venv\\Scripts\\activate
+
+# Upgrade pip
+python -m pip install --upgrade pip
+
+# Install versi-versi teruji
+python -m pip install --no-cache-dir \
+   pandas==2.3.3 numpy==2.4.2 matplotlib==3.10.8 seaborn==0.13.2 \
+   scikit-learn==1.8.0 statsmodels==0.14.6 tensorflow==2.17.0 \
+   mlflow==3.9.0 prophet==1.3.0 optuna==4.7.0 joblib==1.5.3 pandera==0.29.0 lightgbm==4.5.0
+```
+
+### Versi GPU (CUDA 12.x)
+
+Jika Anda menggunakan GPU dengan CUDA 12.x, gunakan rilis TensorFlow CUDA-aware yang cocok dengan CUDA pada mesin Anda. Contoh (pilih sesuai dokumentasi TensorFlow saat ini):
+
+```bash
+# pip (jika tersedia build yang mengemas CUDA)
+python -m pip install tensorflow[and-cuda]==2.17.0
+
+# Atau gunakan conda-forge builds yang cocok
+conda install -c conda-forge tensorflow==2.17.0
+```
+
+### Compatibility Matrix (ringkasan)
+
+| Python | TensorFlow | MLflow | pandas | scikit-learn | Status |
+|--------|-----------:|--------:|-------:|------------:|:------:|
+| 3.11 | 2.16.x | 2.x | 2.x | 1.5.x | ✅ Tested historically |
+| 3.12 | 2.17.x | 3.x | 2.2.x | 1.8.x | ✅ Many packages supported |
+| **3.13** | **2.17.0** | **3.9.0** | **2.3.3** | **1.8.0** | **✅ Recommended (this repo)** |
+| 3.14 | ❌ Not supported (TensorFlow incompatible) | 3.x | 2.x | 1.8.x | ❌ Avoid for this project |
+
+
+---
+
+## �📈 Metrik & Evaluasi
 
 Model dievaluasi menggunakan:
 - **RMSE** (Root Mean Squared Error)
