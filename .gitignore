@@ -1,0 +1,8 @@
+# Ignore Kaggle credentials
+kaggle.json
+.kaggle/
+
+# Dataset and model artifacts
+dataset/
+models/
+artifacts/
