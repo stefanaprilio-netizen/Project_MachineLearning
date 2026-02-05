@@ -1,8 +1,8 @@
-# MLOps Plan: KROM Bank Indonesia Stock Prediction
+# Rencana MLOps: Prediksi Saham KROM Bank Indonesia
 
-**Status**: In Development 🚀  
-**Date Updated**: February 5, 2026  
-**Python Version**: 3.13 (via venv)
+**Status**: Dalam Pengembangan 🚀  
+**Tanggal Diperbarui**: 5 Februari 2026  
+**Versi Python**: 3.13 (via venv)
 
 ---
 
@@ -104,19 +104,19 @@ Project_MachineLearning-1/
 
 ---
 
-## 📊 Models & Approaches
+## 📊 Model & Pendekatan
 
-### Baseline Models
-1. **Naive Forecast**: predict(t+1) = close(t)
-2. **Moving Average**: simple MA-based forecast
+### Model Baseline
+1. **Prediksi Naif**: prediksi(t+1) = close(t)
+2. **Moving Average**: prediksi berbasis MA sederhana
 
-### Statistical Models
-- **ARIMA/SARIMAX**: (implemented as optional)
-- **Prophet**: Facebook's time-series forecasting library
+### Model Statistik
+- **ARIMA/SARIMAX**: (diimplementasikan sebagai opsional)
+- **Prophet**: Pustaka time-series forecasting dari Facebook
 
 ### Machine Learning
-- **RandomForest**: ensemble regressor dengan pipeline preprocessing
-- **LightGBM**: gradient boosting (optional, listed in dependencies)
+- **RandomForest**: ensemble regressor dengan preprocessing pipeline
+- **LightGBM**: gradient boosting (opsional, tersedia di dependencies)
 
 ### Deep Learning
 - **LSTM**: Long Short-Term Memory neural network (1 layer, 32 units)
@@ -126,68 +126,249 @@ Project_MachineLearning-1/
 
 ## 🚀 Quick Start
 
-### Prerequisites
-1. Python 3.13 (installed)
-2. Kaggle API credentials (`~/.kaggle/kaggle.json`)
+### Prasyarat
+1. **Python 3.13 (wajib)** — TensorFlow & MLflow kompatibel hingga 3.13 saja. Python 3.14+ tidak didukung.
+2. Kredensial API Kaggle (`~/.kaggle/kaggle.json`)
 
 ### Setup
 ```bash
-# 1. Create venv with Python 3.13
+# 1. Buat & aktifkan venv
 py -3.13 -m venv .venv
-
-# 2. Activate venv
 .venv\Scripts\activate
 
-# 3. Install dependencies
+# 2. Install semua dependencies
 pip install --upgrade pip
-pip install pandas numpy matplotlib seaborn scikit-learn statsmodels \
-    tensorflow mlflow optuna joblib pandera lightgbm
+pip install pandas numpy matplotlib seaborn scikit-learn statsmodels tensorflow mlflow optuna joblib pandera lightgbm
 
-# 4. Download dataset (if not done)
+# 3. Unduh dataset (sekali saja)
 kaggle datasets download -d caesarmario/krom-bank-indonesia-stock-historical-price -p dataset --unzip
 ```
 
-### Run Notebook
+**⏱️ Catatan**: Instalasi pertama kali mungkin memakan waktu 5-10 menit (TensorFlow ~500MB). Run berikutnya lebih cepat.
+
+### Alternatif: Menggunakan Anaconda
 ```bash
-# Open notebook in VS Code or Jupyter
+# 1. Buat conda environment dengan Python 3.13
+conda create -n mlops-krom python=3.13
+
+# 2. Aktifkan conda environment
+conda activate mlops-krom
+
+# 3. Install dependencies via conda (lebih cepat untuk TensorFlow)
+conda install -c conda-forge pandas numpy matplotlib seaborn scikit-learn statsmodels mlflow optuna joblib pandera lightgbm
+conda install tensorflow
+
+# 4. Install Kaggle via pip
+pip install kaggle
+
+# 5. Unduh dataset (sekali saja)
+kaggle datasets download -d caesarmario/krom-bank-indonesia-stock-historical-price -p dataset --unzip
+```
+
+**✨ Tips**: Conda menangani package besar (seperti TensorFlow) lebih handal. Gunakan ini jika Anaconda/Miniconda sudah terinstall.
+
+### Alternatif: Menggunakan Google Colab
+```python
+# 1. Buka Google Colab dan jalankan di cell pertama
+!pip install --upgrade pip
+!pip install kaggle pandas numpy matplotlib seaborn scikit-learn statsmodels tensorflow mlflow optuna joblib pandera lightgbm
+
+# 2. Mount Google Drive (untuk akses file)
+from google.colab import drive
+drive.mount('/content/drive')
+
+# 3. Upload kaggle.json ke Colab
+# Buka: https://www.kaggle.com/settings/account
+# Download kaggle.json, lalu upload ke Colab via file manager (⬅️ panel kiri)
+# Atau jalankan:
+from google.colab import files
+files.upload()  # Upload kaggle.json
+
+# 4. Setup Kaggle credentials
+!mkdir -p ~/.kaggle
+!cp kaggle.json ~/.kaggle/
+!chmod 600 ~/.kaggle/kaggle.json
+
+# 5. Unduh dataset
+!kaggle datasets download -d caesarmario/krom-bank-indonesia-stock-historical-price -p dataset --unzip
+
+# 6. Clone repo atau upload notebook
+!git clone https://github.com/stefanaprilio-netizen/Project_MachineLearning.git
+# atau upload mlops_plan_krom_bank.ipynb langsung ke Colab
+```
+
+**⚠️ Penting untuk Colab**:
+- **Disk Space**: Colab memberikan ~100GB storage, cukup untuk dataset & model
+- **Runtime**: Setiap session baru. Save outputs ke Google Drive dengan:
+  ```python
+  # Save model ke Drive
+  !cp -r models /content/drive/MyDrive/mlops-backup/
+  !cp -r artifacts /content/drive/MyDrive/mlops-backup/
+  ```
+- **GPU/TPU**: Colab gratis dengan GPU. Aktifkan di: Runtime → Change runtime type → GPU
+- **Kaggle API**: Pastikan `~/.kaggle/kaggle.json` ada dengan permission 600
+- **TensorFlow**: Sudah preinstalled di Colab (versi terbaru). Jalankan `!pip install --upgrade tensorflow` jika perlu update
+
+**Tips Colab**:
+- Gunakan `!` untuk shell commands, `%` untuk magic commands
+- Mount Drive untuk persistent storage: `from google.colab import drive; drive.mount('/content/drive')`
+- Download hasil: `files.download('model.pkl')` atau save ke Drive
+
+### Alternatif: Menggunakan GitHub Desktop
+GitHub Desktop mempermudah management repository tanpa perlu command line. Ikuti langkah berikut:
+
+#### Setup Awal
+```
+1. Download & Install GitHub Desktop dari https://desktop.github.com
+2. Login dengan akun GitHub Anda
+3. Klik "File" → "Clone Repository"
+4. Pilih: stefanaprilio-netizen/Project_MachineLearning
+5. Pilih folder lokal (misal: C:\Users\YourName\Documents\GitHub\)
+6. Klik "Clone"
+```
+
+#### Workflow Harian (Commit & Push Changes)
+
+**Setelah mengedit file (notebook, README, etc):**
+
+1. **Lihat Changes** (di panel kiri):
+   - Semua file yang berubah akan muncul di tab "Changes"
+   - Biru = modified, Hijau = added
+
+2. **Pilih file untuk di-stage** (checkbox sebelah filename):
+   ```
+   ☑ mlops_plan_krom_bank.ipynb
+   ☑ README.md
+   ☐ .venv/  (jangan, sudah di .gitignore)
+   ```
+
+3. **Write Commit Message** (di bawah panel Changes):
+   ```
+   Summary: Update notebook with CNN model training
+   Description: Added Conv1D layers, saved preprocessing artifacts
+   ```
+
+4. **Klik "Commit to main"** (atau branch lain)
+
+5. **Push ke GitHub**:
+   - Klik tombol "Push origin" di top
+   - Tunggu hingga selesai (muncul "No local changes")
+
+#### Workflow Kolaborasi (Update dari Remote)
+
+**Sebelum mulai bekerja di pagi hari:**
+
+1. Klik tombol "Fetch origin" atau "Pull origin"
+   - Fetch: Cek update dari GitHub tanpa merge
+   - Pull: Download & merge update ke local
+
+2. Jika ada conflict:
+   - GitHub Desktop akan notifikasi
+   - Pilih "Open in External Editor" untuk resolve conflict
+   - Edit file, hapus conflict markers (`<<<<`, `>>>>`)
+   - Save file, commit, push
+
+#### Melihat History & Revert Changes
+
+**History (untuk lihat commit sebelumnya):**
+- Klik tab "History" di panel kiri
+- Klik commit untuk lihat file yang berubah
+- Klik file untuk lihat diff (perubahan detail)
+
+**Revert commit (batalkan last commit):**
+- Klik commit di History
+- Klik "Revert this commit"
+- GitHub Desktop membuat commit baru yang batalkan perubahan
+
+**Discard changes (hapus local edits):**
+- Di tab "Changes", klik file
+- Klik "Discard changes"
+- ⚠️ Tidak bisa di-undo, pastikan sudah backup!
+
+#### Tips GitHub Desktop
+
+| Aksi | Via GitHub Desktop | Via Command Line |
+|-----|-------------------|------------------|
+| Lihat status | Tab "Changes" | `git status` |
+| Commit | Write message + Click "Commit" | `git commit -m "msg"` |
+| Push | Click "Push origin" | `git push` |
+| Pull | Click "Pull origin" | `git pull` |
+| Lihat history | Tab "History" | `git log --oneline` |
+| Buat branch baru | Click "Branch" → "New Branch" | `git branch <name>` |
+| Switch branch | Click branch di tab "Current Branch" | `git checkout <name>` |
+| Stash changes | Klik branch, pilih stash | `git stash` |
+
+#### Troubleshooting GitHub Desktop
+
+| Masalah | Solusi |
+|--------|--------|
+| "Authentication failed" | Logout & login ulang di File → Options → Accounts |
+| "Failed to push" | Klik "Pull origin" dulu untuk sync, baru push |
+| "Can't commit" (file grayed out) | File ada di .gitignore. Edit .gitignore untuk include |
+| Melihat `dagnostics.log` penuh | Klik Help → Show Logs Folder, hapus old logs |
+| Conflict saat pull | Buka file conflict di editor, resolve manual, commit |
+
+**Catatan**: GitHub Desktop user-friendly tapi buat task kompleks (rebase, cherry-pick), gunakan command line atau Git GUI lainnya.
+
+### Jalankan Notebook
+```bash
+# Buka notebook di VS Code atau Jupyter
 jupyter notebook mlops_plan_krom_bank.ipynb
 ```
 
-Then run cells sequentially (1 → 13):
-- Cells 1-2: Setup & imports
-- Cells 3-7: Data load, EDA, preprocessing, features
-- Cells 8-9: Split & baseline models
-- Cells 10-12: Deep learning models & MLflow
-- Cell 13: Next steps
+Jalankan cell secara berurutan (1 → 13):
+- Cell 1-2: Setup & imports
+- Cell 3-7: Load data, EDA, preprocessing, features
+- Cell 8-9: Split & baseline models
+- Cell 10-12: Deep learning models & MLflow
+- Cell 13: Langkah selanjutnya
+
+### Troubleshooting Instalasi Package
+
+| Masalah | Solusi |
+|--------|--------|
+| `ModuleNotFoundError: No module named 'statsmodels'` | Jalankan: `.venv\Scripts\python.exe -m pip install statsmodels` |
+| `No module named 'tensorflow'` | TensorFlow mungkin memakan 5-10 menit install. Jika gagal, coba: `pip install tensorflow --no-cache-dir` |
+| `pip command not found` | Aktifkan venv terlebih dahulu: `.venv\Scripts\activate` |
+| `Permission denied` saat install package | Jalankan terminal sebagai Administrator, atau coba: `pip install --user <package>` |
+| Installation timeout | Gunakan: `pip install --default-timeout=1000 <package>` |
+| Disk space penuh saat install TensorFlow | Butuh ~2GB. Bebaskan space dan coba lagi. |
+
+**Quick fix untuk semua package:**
+```bash
+.venv\Scripts\python.exe -m pip install --upgrade pip
+.venv\Scripts\python.exe -m pip install --no-cache-dir pandas numpy matplotlib seaborn scikit-learn statsmodels tensorflow mlflow optuna joblib pandera lightgbm
+```
 
 ---
 
-## 📈 Metrics & Evaluation
+## 📈 Metrik & Evaluasi
 
-Models evaluated using:
+Model dievaluasi menggunakan:
 - **RMSE** (Root Mean Squared Error)
 - **MAE** (Mean Absolute Error)
 - **MAPE** (Mean Absolute Percentage Error)
 
-Train/Val/Test split: **70% / 15% / 15%** (time-series aware)
+Pembagian Train/Val/Test: **70% / 15% / 15%** (time-series aware)
 
 ---
 
-## 📝 Notes
+## 📝 Catatan
 
-- **TensorFlow & Prophet**: Membutuhkan paket besar; instalasi mungkin memakan waktu
+- **Versi Python**: Project menargetkan **Python 3.13 maksimal**. TensorFlow & MLflow tidak kompatibel dengan Python 3.14+. Gunakan `py -3.13 -m venv .venv` untuk memastikan versi yang benar.
+- **TensorFlow & Prophet**: Membutuhkan package besar; instalasi mungkin memakan waktu
 - **Dataset**: Diunduh dari Kaggle; pastikan kredensial valid di `~/.kaggle/kaggle.json`
 - **MLflow**: Tracking lokal di `artifacts/mlruns/`; bisa dilihat via `mlflow ui`
 - **Security**: Jangan commit `kaggle.json` atau credentials ke repository
 
 ---
 
-## 📞 Contact & References
+## 📞 Kontak & Referensi
 
-- **Dataset**: [KROM Bank Indonesia Stock Historical Price](https://www.kaggle.com/datasets/caesarmario/krom-bank-indonesia-stock-historical-price)
+- **Dataset**: [Harga Saham Historis KROM Bank Indonesia](https://www.kaggle.com/datasets/caesarmario/krom-bank-indonesia-stock-historical-price)
 - **Libraries**: TensorFlow, scikit-learn, pandas, MLflow, Prophet
-- **MLOps Best Practices**: Model versioning, experiment tracking, automated retraining
+- **Best Practices MLOps**: Model versioning, experiment tracking, automated retraining
 
 ---
 
-**Last Updated**: February 5, 2026
+**Terakhir Diperbarui**: 5 Februari 2026
