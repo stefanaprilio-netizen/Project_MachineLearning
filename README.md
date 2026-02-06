@@ -79,12 +79,12 @@ Project_MachineLearning-1/
 ## ⏳ In Progress / TODO
 
 ### Immediate (Next Steps)
-- [ ] Run notebook cell 1-2 (setup & pip install)
-- [ ] Run notebook cells 3-5 (data load & EDA)
-- [ ] Run notebook cells 6-7 (preprocessing & feature engineering)
-- [ ] Run notebook cells 8-9 (baseline & RandomForest training)
-- [ ] Run notebook cell 12 (CNN training & save artifacts)
-- [ ] Verify outputs in `models/` and `artifacts/`
+- ✅ Run notebook cell 1-2 (setup & pip install)
+- ✅ Run notebook cells 3-5 (data load & EDA)
+- ✅ Run notebook cells 6-7 (preprocessing & feature engineering)
+- ✅ Run notebook cells 8-9 (baseline & RandomForest training)
+- ✅ Run notebook cell 12 (CNN training & save artifacts)
+- ✅ Verify outputs in `models/` and `artifacts/`
 
 ### Medium Term
 - [ ] Install & run Prophet baseline model
