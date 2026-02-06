@@ -15,6 +15,7 @@ Rencana Machine Learning Operations (MLOps) lengkap untuk prediksi harga saham K
 ## ✅ Completed Tasks
 
 ### 1. Dataset Management
+
 - ✅ Folder `dataset/` dibuat dengan struktur lengkap
 - ✅ Dataset BBSI.JK berhasil diunduh via Kaggle CLI
 - ✅ File CSV tersimpan:
@@ -24,10 +25,11 @@ Rencana Machine Learning Operations (MLOps) lengkap untuk prediksi harga saham K
 - ✅ Metadata & snapshot tersimpan di `dataset/README.txt`
 
 ### 2. Notebook MLOps (`mlops_plan_krom_bank.ipynb`)
+
 Notebook interaktif lengkap dengan 12+ sel:
 
 | Cell | Deskripsi | Status |
-|------|-----------|--------|
+| ------ | ----------- | -------- |
 | 1 | Markdown: Judul & Overview | ✅ |
 | 2 | Setup: pip update + install dependencies | ✅ |
 | 3 | Imports umum & pembuatan folder | ✅ |
@@ -43,6 +45,7 @@ Notebook interaktif lengkap dengan 12+ sel:
 | 13 | Markdown: Next steps checklist | ✅ |
 
 ### 3. Environment & Security
+
 - ✅ Virtual environment (venv) configured dengan Python 3.13
 - ✅ Pip upgraded to 26.0.1 (latest)
 - ✅ `README_KAGGLE.md` dengan instruksi setup credentials (manual)
@@ -51,7 +54,7 @@ Notebook interaktif lengkap dengan 12+ sel:
 - ✅ Template files dihapus (cleanup completed; gunakan `README_KAGGLE.md` untuk setup)
 
 ### 4. Folder Structure
-```
+
 Project_MachineLearning-1/
 ├── mlops_plan_krom_bank.ipynb       # Main notebook
 ├── dataset/                          # Data folder
@@ -72,13 +75,13 @@ Project_MachineLearning-1/
 ├── .gitignore
 ├── README.md                        # This file
 └── README_KAGGLE.md
-```
 
 ---
 
 ## ⏳ In Progress / TODO
 
 ### Immediate (Next Steps)
+
 - ✅ Run notebook cell 1-2 (setup & pip install)
 - ✅ Run notebook cells 3-5 (data load & EDA)
 - ✅ Run notebook cells 6-7 (preprocessing & feature engineering)
@@ -87,6 +90,7 @@ Project_MachineLearning-1/
 - ✅ Verify outputs in `models/` and `artifacts/`
 
 ### Medium Term
+
 - [ ] Install & run Prophet baseline model
 - [ ] Train LSTM model end-to-end
 - [ ] Validate preprocessing artifacts (parquet, scaler)
@@ -94,6 +98,7 @@ Project_MachineLearning-1/
 - [ ] Compare model metrics (RMSE, MAE, MAPE)
 
 ### Long Term (Production Readiness)
+
 - [ ] Add unit tests (`pytest`) untuk preprocessing & feature engineering
 - [ ] Add data validation dengan `pandera`
 - [ ] Build Dockerfile untuk containerization
@@ -107,18 +112,22 @@ Project_MachineLearning-1/
 ## 📊 Model & Pendekatan
 
 ### Model Baseline
+
 1. **Prediksi Naif**: prediksi(t+1) = close(t)
 2. **Moving Average**: prediksi berbasis MA sederhana
 
 ### Model Statistik
+
 - **ARIMA/SARIMAX**: (diimplementasikan sebagai opsional)
 - **Prophet**: Pustaka time-series forecasting dari Facebook
 
 ### Machine Learning
+
 - **RandomForest**: ensemble regressor dengan preprocessing pipeline
 - **LightGBM**: gradient boosting (opsional, tersedia di dependencies)
 
 ### Deep Learning
+
 - **LSTM**: Long Short-Term Memory neural network (1 layer, 32 units)
 - **CNN (Conv1D)**: Convolutional neural network dengan 2 conv blocks + dense layers
 
@@ -127,10 +136,12 @@ Project_MachineLearning-1/
 ## 🚀 Quick Start
 
 ### Prasyarat
+
 1. **Python 3.13 (wajib)** — TensorFlow & MLflow kompatibel hingga 3.13 saja. Python 3.14+ tidak didukung.
 2. Kredensial API Kaggle (`~/.kaggle/kaggle.json`)
 
 ### Setup
+
 ```bash
 # 1. Buat & aktifkan venv
 py -3.13 -m venv .venv
@@ -147,6 +158,7 @@ kaggle datasets download -d caesarmario/krom-bank-indonesia-stock-historical-pri
 **⏱️ Catatan**: Instalasi pertama kali mungkin memakan waktu 5-10 menit (TensorFlow ~500MB). Run berikutnya lebih cepat.
 
 ### Alternatif: Menggunakan Anaconda
+
 ```bash
 # 1. Buat conda environment dengan Python 3.13
 conda create -n mlops-krom python=3.13
@@ -168,6 +180,7 @@ kaggle datasets download -d caesarmario/krom-bank-indonesia-stock-historical-pri
 **✨ Tips**: Conda menangani package besar (seperti TensorFlow) lebih handal. Gunakan ini jika Anaconda/Miniconda sudah terinstall.
 
 ### Alternatif: Menggunakan Google Colab
+
 ```python
 # 1. Buka Google Colab dan jalankan di cell pertama
 !pip install --upgrade pip
@@ -198,34 +211,38 @@ files.upload()  # Upload kaggle.json
 ```
 
 **⚠️ Penting untuk Colab**:
+
 - **Disk Space**: Colab memberikan ~100GB storage, cukup untuk dataset & model
 - **Runtime**: Setiap session baru. Save outputs ke Google Drive dengan:
+
   ```python
   # Save model ke Drive
   !cp -r models /content/drive/MyDrive/mlops-backup/
   !cp -r artifacts /content/drive/MyDrive/mlops-backup/
   ```
+
 - **GPU/TPU**: Colab gratis dengan GPU. Aktifkan di: Runtime → Change runtime type → GPU
 - **Kaggle API**: Pastikan `~/.kaggle/kaggle.json` ada dengan permission 600
 - **TensorFlow**: Sudah preinstalled di Colab (versi terbaru). Jalankan `!pip install --upgrade tensorflow` jika perlu update
 
 **Tips Colab**:
+
 - Gunakan `!` untuk shell commands, `%` untuk magic commands
 - Mount Drive untuk persistent storage: `from google.colab import drive; drive.mount('/content/drive')`
 - Download hasil: `files.download('model.pkl')` atau save ke Drive
 
 ### Alternatif: Menggunakan GitHub Desktop
+
 GitHub Desktop mempermudah management repository tanpa perlu command line. Ikuti langkah berikut:
 
 #### Setup Awal
-```
-1. Download & Install GitHub Desktop dari https://desktop.github.com
+
+1. Download & Install GitHub Desktop dari <https://desktop.github.com>
 2. Login dengan akun GitHub Anda
 3. Klik "File" → "Clone Repository"
 4. Pilih: stefanaprilio-netizen/Project_MachineLearning
 5. Pilih folder lokal (misal: C:\Users\YourName\Documents\GitHub\)
 6. Klik "Clone"
-```
 
 #### Workflow Harian (Commit & Push Changes)
 
@@ -236,17 +253,15 @@ GitHub Desktop mempermudah management repository tanpa perlu command line. Ikuti
    - Biru = modified, Hijau = added
 
 2. **Pilih file untuk di-stage** (checkbox sebelah filename):
-   ```
+
    ☑ mlops_plan_krom_bank.ipynb
    ☑ README.md
    ☐ .venv/  (jangan, sudah di .gitignore)
-   ```
 
 3. **Write Commit Message** (di bawah panel Changes):
-   ```
+
    Summary: Update notebook with CNN model training
    Description: Added Conv1D layers, saved preprocessing artifacts
-   ```
 
 4. **Klik "Commit to main"** (atau branch lain)
 
@@ -271,16 +286,19 @@ GitHub Desktop mempermudah management repository tanpa perlu command line. Ikuti
 #### Melihat History & Revert Changes
 
 **History (untuk lihat commit sebelumnya):**
+
 - Klik tab "History" di panel kiri
 - Klik commit untuk lihat file yang berubah
 - Klik file untuk lihat diff (perubahan detail)
 
 **Revert commit (batalkan last commit):**
+
 - Klik commit di History
 - Klik "Revert this commit"
 - GitHub Desktop membuat commit baru yang batalkan perubahan
 
 **Discard changes (hapus local edits):**
+
 - Di tab "Changes", klik file
 - Klik "Discard changes"
 - ⚠️ Tidak bisa di-undo, pastikan sudah backup!
@@ -288,7 +306,7 @@ GitHub Desktop mempermudah management repository tanpa perlu command line. Ikuti
 #### Tips GitHub Desktop
 
 | Aksi | Via GitHub Desktop | Via Command Line |
-|-----|-------------------|------------------|
+| ----- | ------------------- | ------------------ |
 | Lihat status | Tab "Changes" | `git status` |
 | Commit | Write message + Click "Commit" | `git commit -m "msg"` |
 | Push | Click "Push origin" | `git push` |
@@ -301,7 +319,7 @@ GitHub Desktop mempermudah management repository tanpa perlu command line. Ikuti
 #### Troubleshooting GitHub Desktop
 
 | Masalah | Solusi |
-|--------|--------|
+| -------- | -------- |
 | "Authentication failed" | Logout & login ulang di File → Options → Accounts |
 | "Failed to push" | Klik "Pull origin" dulu untuk sync, baru push |
 | "Can't commit" (file grayed out) | File ada di .gitignore. Edit .gitignore untuk include |
@@ -311,12 +329,14 @@ GitHub Desktop mempermudah management repository tanpa perlu command line. Ikuti
 **Catatan**: GitHub Desktop user-friendly tapi buat task kompleks (rebase, cherry-pick), gunakan command line atau Git GUI lainnya.
 
 ### Jalankan Notebook
+
 ```bash
 # Buka notebook di VS Code atau Jupyter
 jupyter notebook mlops_plan_krom_bank.ipynb
 ```
 
 Jalankan cell secara berurutan (1 → 13):
+
 - Cell 1-2: Setup & imports
 - Cell 3-7: Load data, EDA, preprocessing, features
 - Cell 8-9: Split & baseline models
@@ -326,7 +346,7 @@ Jalankan cell secara berurutan (1 → 13):
 ### Troubleshooting Instalasi Package
 
 | Masalah | Solusi |
-|--------|--------|
+| -------- | -------- |
 | `ModuleNotFoundError: No module named 'statsmodels'` | Jalankan: `.venv\Scripts\python.exe -m pip install statsmodels` |
 | `No module named 'tensorflow'` | TensorFlow mungkin memakan 5-10 menit install. Jika gagal, coba: `pip install tensorflow --no-cache-dir` |
 | `pip command not found` | Aktifkan venv terlebih dahulu: `.venv\Scripts\activate` |
@@ -335,6 +355,7 @@ Jalankan cell secara berurutan (1 → 13):
 | Disk space penuh saat install TensorFlow | Butuh ~2GB. Bebaskan space dan coba lagi. |
 
 **Quick fix untuk semua package:**
+
 ```bash
 .venv\Scripts\python.exe -m pip install --upgrade pip
 .venv\Scripts\python.exe -m pip install --no-cache-dir pandas numpy matplotlib seaborn scikit-learn statsmodels tensorflow mlflow optuna joblib pandera lightgbm
@@ -347,23 +368,23 @@ Jalankan cell secara berurutan (1 → 13):
 Versi library yang telah diuji pada lingkungan Python 3.13 (diterapkan pada repository ini per 2026-02-05):
 
 | Library | Versi Teruji | Catatan |
-|---------|--------------|---------|
+| --------- | -------------- | --------- |
 | Python | 3.13.x | Target project; jangan gunakan 3.14+ untuk TensorFlow saat ini |
-| pip | 26.0.1 | Upgrade via `pip install --upgrade pip`
-| pandas | 2.3.3 | Digunakan untuk data handling di notebook
-| numpy | 2.4.2 | Dependensi numerik utama
-| matplotlib | 3.10.8 | Visualisasi
-| seaborn | 0.13.2 | Plotting statistik
-| scikit-learn | 1.8.0 | Algoritma ML klasik
-| statsmodels | 0.14.6 | Analisis time-series/statistik
-| tensorflow | 2.17.0 | Kompatibel dengan Python 3.13 (hindari 2.18+)
-| keras | 3.0.0 | Disertakan dalam TensorFlow
-| mlflow | 3.9.0 | Experiment tracking lokal
-| prophet | 1.3.0 | Time-series forecasting
-| optuna | 4.7.0 | Hyperparameter tuning
-| joblib | 1.5.3 | Serialisasi model
-| pandera | 0.29.0 | Data validation
-| lightgbm | 4.5.0 | Gradient boosting
+| pip | 26.0.1 | Upgrade via `pip install --upgrade pip |
+| pandas | 2.3.3 | Digunakan untuk data handling di notebook |
+| numpy | 2.4.2 | Dependensi numerik utama |
+| matplotlib | 3.10.8 | Visualisasi |
+| seaborn | 0.13.2 | Plotting statistik |
+| scikit-learn | 1.8.0 | Algoritma ML klasik |
+| statsmodels | 0.14.6 | Analisis time-series/statistik |
+| tensorflow | 2.17.0 | Kompatibel dengan Python 3.13 (hindari 2.18+) |
+| keras | 3.0.0 | Disertakan dalam TensorFlow |
+| mlflow | 3.9.0 | Experiment tracking lokal |
+| prophet | 1.3.0 | Time-series forecasting |
+| optuna | 4.7.0 | Hyperparameter tuning |
+| joblib | 1.5.3 | Serialisasi model |
+| pandera | 0.29.0 | Data validation |
+| lightgbm | 4.5.0 | Gradient boosting |
 
 ### Instalasi Versi Teruji (Python 3.13)
 
@@ -399,18 +420,18 @@ conda install -c conda-forge tensorflow==2.17.0
 ### Compatibility Matrix (ringkasan)
 
 | Python | TensorFlow | MLflow | pandas | scikit-learn | Status |
-|--------|-----------:|--------:|-------:|------------:|:------:|
+| -------- | -----------: | --------: | -------: | ------------: | :------: |
 | 3.11 | 2.16.x | 2.x | 2.x | 1.5.x | ✅ Tested historically |
 | 3.12 | 2.17.x | 3.x | 2.2.x | 1.8.x | ✅ Many packages supported |
 | **3.13** | **2.17.0** | **3.9.0** | **2.3.3** | **1.8.0** | **✅ Recommended (this repo)** |
 | 3.14 | ❌ Not supported (TensorFlow incompatible) | 3.x | 2.x | 1.8.x | ❌ Avoid for this project |
-
 
 ---
 
 ## �📈 Metrik & Evaluasi
 
 Model dievaluasi menggunakan:
+
 - **RMSE** (Root Mean Squared Error)
 - **MAE** (Mean Absolute Error)
 - **MAPE** (Mean Absolute Percentage Error)
