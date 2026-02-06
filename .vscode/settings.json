@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^git add \\.$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
