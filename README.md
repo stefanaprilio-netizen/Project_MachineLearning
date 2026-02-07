@@ -161,7 +161,7 @@ pip install -r requirements.txt
 kaggle datasets download -d caesarmario/krom-bank-indonesia-stock-historical-price -p dataset --unzip
 ```
 
-**⏱️ Catatan**: Instalasi pertama kali mungkin memakan waktu 5-10 menit (TensorFlow ~500MB). Run berikutnya lebih cepat.
+**⏱️ Catatan**: Instalasi pertama kali mungkin memakan waktu 5-10 menit (TensorFlow ~500MB) tergantung pada kecepatan koneksi internet Anda. Run berikutnya akan jauh lebih cepat. Jika koneksi tidak stabil, lihat bagian **Troubleshooting** di bawah.
 
 ### Alternatif: Menggunakan Anaconda
 
@@ -446,10 +446,29 @@ Pembagian Train/Val/Test: **70% / 15% / 15%** (time-series aware)
 
 ---
 
+## 💡 Tips Pengembangan (Dev Tips)
+
+### 🖥️ Backend (Model Serving)
+
+1. **Validasi Data**: Gunakan `pydantic` pada FastAPI untuk memvalidasi input data saham (misal: format tanggal, range harga) sebelum dikirim ke model.
+2. **Async Operations**: Manfaatkan `async def` untuk endpoint API guna menangani beban request yang tinggi tanpa memblokir thread.
+3. **Model Caching**: Muat model (misal `.pkl` atau `.h5`) sekali saat startup aplikasi, jangan memuat balik untuk setiap request prediksi.
+4. **Versioning**: Berikan prefix versi pada URL API (contoh: `/api/v1/predict`) untuk mempermudah migrasi jika arsitektur model berubah.
+
+### 🎨 Frontend (Dashboard/UI)
+
+1. **Real-time Charts**: Gunakan library seperti `Plotly.js` atau `Chart.js` untuk membuat grafik harga saham yang interaktif dan responsif.
+2. **Error Handling**: Implementasikan fallback UI (seperti skeleton loader atau pesan error yang ramah) saat API backend sedang memproses data atau jika model gagal memproses input.
+3. **State Management**: Simpan hasil prediksi sementara di state (seperti React Context atau Vuex) agar user tidak perlu melakukan request berulang untuk data yang sama.
+4. **Mobile First**: Pastikan dashboard metriks tetap terbaca jelas di perangkat mobile, terutama grafik time-series yang panjang.
+
+---
+
 ## 📝 Catatan
 
 - **Versi Python**: Project menargetkan **Python 3.13 maksimal**. TensorFlow & MLflow tidak kompatibel dengan Python 3.14+. Gunakan `py -3.13 -m venv .venv` untuk memastikan versi yang benar.
-- **TensorFlow & Prophet**: Membutuhkan package besar; instalasi mungkin memakan waktu
+- **TensorFlow & Prophet**: Membutuhkan package besar; kecepatan instalasi sangat bergantung pada kualitas internet Anda.
+- **Instalasi Gagal?**: Jika `pip` terputus karena timeout, gunakan `--default-timeout=1000` atau cek bagian Troubleshooting.
 - **Dataset**: Diunduh dari Kaggle; pastikan kredensial valid di `~/.kaggle/kaggle.json`
 - **MLflow**: Tracking lokal di `artifacts/mlruns/`; bisa dilihat via `mlflow ui`
 - **Security**: Jangan commit `kaggle.json` atau credentials ke repository
