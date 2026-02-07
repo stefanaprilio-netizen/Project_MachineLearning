@@ -469,6 +469,7 @@ Pembagian Train/Val/Test: **70% / 15% / 15%** (time-series aware)
 - **Versi Python**: Project menargetkan **Python 3.13 maksimal**. TensorFlow & MLflow tidak kompatibel dengan Python 3.14+. Gunakan `py -3.13 -m venv .venv` untuk memastikan versi yang benar.
 - **TensorFlow & Prophet**: Membutuhkan package besar; kecepatan instalasi sangat bergantung pada kualitas internet Anda.
 - **Instalasi Gagal?**: Jika `pip` terputus karena timeout, gunakan `--default-timeout=1000` atau cek bagian Troubleshooting.
+- **Error [WinError 32]**: Jika muncul pesan "process cannot access the file", biasanya karena Kernel Jupyter sedang aktif. **Restart Kernel** atau tutup notebook sebelum instalasi.
 - **Dataset**: Diunduh dari Kaggle; pastikan kredensial valid di `~/.kaggle/kaggle.json`
 - **MLflow**: Tracking lokal di `artifacts/mlruns/`; bisa dilihat via `mlflow ui`
 - **Security**: Jangan commit `kaggle.json` atau credentials ke repository
