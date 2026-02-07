@@ -1,7 +1,7 @@
 # Rencana MLOps: Prediksi Saham KROM Bank Indonesia
 
 **Status**: Dalam Pengembangan 🚀  
-**Tanggal Diperbarui**: 5 Februari 2026  
+**Tanggal Diperbarui**: 7 Februari 2026  
 **Versi Python**: 3.13 (via venv)
 
 ---
@@ -49,13 +49,16 @@ Notebook interaktif lengkap dengan 12+ sel:
 - ✅ Virtual environment (venv) configured dengan Python 3.13
 - ✅ Pip upgraded to 26.0.1 (latest)
 - ✅ `README_KAGGLE.md` dengan instruksi setup credentials (manual)
-- ✅ `kaggle.json` tersimpan di `~/.kaggle/` (production credentials)
+- ✅ `kaggle.json` template tersedia di root (diabaikan oleh git)
+- ✅ `requirements.txt` dibuat dengan versi library terbaru (Feb 2026)
+- ✅ `kaggle.json` production tersimpan di `~/.kaggle/` (cek template)
 - ✅ `.gitignore` melindungi credentials & artifacts dari version control
 - ✅ Template files dihapus (cleanup completed; gunakan `README_KAGGLE.md` untuk setup)
 
 ### 4. Folder Structure
 
-Project_MachineLearning-1/
+```text
+Project_MachineLearning/
 ├── mlops_plan_krom_bank.ipynb       # Main notebook
 ├── dataset/                          # Data folder
 │   ├── BBSI.JK.csv
@@ -73,8 +76,11 @@ Project_MachineLearning-1/
 │   └── mlruns/                      # MLflow tracking
 ├── .venv/                           # Virtual environment
 ├── .gitignore
+├── requirements.txt                 # Pin dependencies
+├── kaggle.json                      # Template credentials
 ├── README.md                        # This file
 └── README_KAGGLE.md
+```
 
 ---
 
@@ -149,7 +155,7 @@ py -3.13 -m venv .venv
 
 # 2. Install semua dependencies
 pip install --upgrade pip
-pip install pandas numpy matplotlib seaborn scikit-learn statsmodels tensorflow mlflow optuna joblib pandera lightgbm
+pip install -r requirements.txt
 
 # 3. Unduh dataset (sekali saja)
 kaggle datasets download -d caesarmario/krom-bank-indonesia-stock-historical-price -p dataset --unzip
@@ -184,7 +190,7 @@ kaggle datasets download -d caesarmario/krom-bank-indonesia-stock-historical-pri
 ```python
 # 1. Buka Google Colab dan jalankan di cell pertama
 !pip install --upgrade pip
-!pip install kaggle pandas numpy matplotlib seaborn scikit-learn statsmodels tensorflow mlflow optuna joblib pandera lightgbm
+!pip install pandas==3.0.1 numpy==2.4.2 matplotlib==3.10.8 seaborn==0.13.2 scikit-learn==1.8.0 statsmodels==0.15.0 tensorflow==2.20.0 mlflow==3.9.0 prophet==1.3.0 optuna==4.6 joblib==1.5.3 pandera==0.29.0 lightgbm==4.6.0
 
 # 2. Mount Google Drive (untuk akses file)
 from google.colab import drive
@@ -358,33 +364,33 @@ Jalankan cell secara berurutan (1 → 13):
 
 ```bash
 .venv\Scripts\python.exe -m pip install --upgrade pip
-.venv\Scripts\python.exe -m pip install --no-cache-dir pandas numpy matplotlib seaborn scikit-learn statsmodels tensorflow mlflow optuna joblib pandera lightgbm
+.venv\Scripts\python.exe -m pip install --no-cache-dir pandas==3.0.1 numpy==2.4.2 matplotlib==3.10.8 seaborn==0.13.2 scikit-learn==1.8.0 statsmodels==0.15.0 tensorflow==2.20.0 mlflow==3.9.0 prophet==1.3.0 optuna==4.6 joblib==1.5.3 pandera==0.29.0 lightgbm==4.6.0
 ```
 
 ---
 
 ## **Rekomendasi Versi Library (Teruji — Python 3.13)**
 
-Versi library yang telah diuji pada lingkungan Python 3.13 (diterapkan pada repository ini per 2026-02-05):
+Versi library yang telah diuji pada lingkungan Python 3.13 (diterapkan pada repository ini per 2026-02-07):
 
 | Library | Versi Teruji | Catatan |
 | --------- | -------------- | --------- |
 | Python | 3.13.x | Target project; jangan gunakan 3.14+ untuk TensorFlow saat ini |
 | pip | 26.0.1 | Upgrade via `pip install --upgrade pip |
-| pandas | 2.3.3 | Digunakan untuk data handling di notebook |
+| pandas | 3.0.1 | Digunakan untuk data handling di notebook |
 | numpy | 2.4.2 | Dependensi numerik utama |
 | matplotlib | 3.10.8 | Visualisasi |
 | seaborn | 0.13.2 | Plotting statistik |
 | scikit-learn | 1.8.0 | Algoritma ML klasik |
-| statsmodels | 0.14.6 | Analisis time-series/statistik |
-| tensorflow | 2.17.0 | Kompatibel dengan Python 3.13 (hindari 2.18+) |
+| statsmodels | 0.15.0 | Analisis time-series/statistik |
+| tensorflow | 2.20.0 | Kompatibel dengan Python 3.13 (sebagai rilis terbaru) |
 | keras | 3.0.0 | Disertakan dalam TensorFlow |
 | mlflow | 3.9.0 | Experiment tracking lokal |
 | prophet | 1.3.0 | Time-series forecasting |
-| optuna | 4.7.0 | Hyperparameter tuning |
+| optuna | 4.6 | Hyperparameter tuning |
 | joblib | 1.5.3 | Serialisasi model |
 | pandera | 0.29.0 | Data validation |
-| lightgbm | 4.5.0 | Gradient boosting |
+| lightgbm | 4.6.0 | Gradient boosting |
 
 ### Instalasi Versi Teruji (Python 3.13)
 
@@ -400,9 +406,9 @@ python -m pip install --upgrade pip
 
 # Install versi-versi teruji
 python -m pip install --no-cache-dir \
-   pandas==2.3.3 numpy==2.4.2 matplotlib==3.10.8 seaborn==0.13.2 \
-   scikit-learn==1.8.0 statsmodels==0.14.6 tensorflow==2.17.0 \
-   mlflow==3.9.0 prophet==1.3.0 optuna==4.7.0 joblib==1.5.3 pandera==0.29.0 lightgbm==4.5.0
+   pandas==3.0.1 numpy==2.4.2 matplotlib==3.10.8 seaborn==0.13.2 \
+   scikit-learn==1.8.0 statsmodels==0.15.0 tensorflow==2.20.0 \
+   mlflow==3.9.0 prophet==1.3.0 optuna==4.6 joblib==1.5.3 pandera==0.29.0 lightgbm==4.6.0
 ```
 
 ### Versi GPU (CUDA 12.x)
@@ -411,10 +417,10 @@ Jika Anda menggunakan GPU dengan CUDA 12.x, gunakan rilis TensorFlow CUDA-aware 
 
 ```bash
 # pip (jika tersedia build yang mengemas CUDA)
-python -m pip install tensorflow[and-cuda]==2.17.0
+python -m pip install tensorflow[and-cuda]==2.20.0
 
 # Atau gunakan conda-forge builds yang cocok
-conda install -c conda-forge tensorflow==2.17.0
+conda install -c conda-forge tensorflow==2.20.0
 ```
 
 ### Compatibility Matrix (ringkasan)
@@ -423,7 +429,7 @@ conda install -c conda-forge tensorflow==2.17.0
 | -------- | -----------: | --------: | -------: | ------------: | :------: |
 | 3.11 | 2.16.x | 2.x | 2.x | 1.5.x | ✅ Tested historically |
 | 3.12 | 2.17.x | 3.x | 2.2.x | 1.8.x | ✅ Many packages supported |
-| **3.13** | **2.17.0** | **3.9.0** | **2.3.3** | **1.8.0** | **✅ Recommended (this repo)** |
+| **3.13** | **2.20.0** | **3.9.0** | **3.0.1** | **1.8.0** | **✅ Recommended (this repo)** |
 | 3.14 | ❌ Not supported (TensorFlow incompatible) | 3.x | 2.x | 1.8.x | ❌ Avoid for this project |
 
 ---
@@ -458,4 +464,4 @@ Pembagian Train/Val/Test: **70% / 15% / 15%** (time-series aware)
 
 ---
 
-**Terakhir Diperbarui**: 5 Februari 2026
+**Terakhir Diperbarui**: 7 Februari 2026
