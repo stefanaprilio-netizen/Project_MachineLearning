@@ -1,7 +1,7 @@
 # Rencana MLOps: Prediksi Saham KROM Bank Indonesia
 
 **Status**: Dalam Pengembangan 🚀  
-**Tanggal Diperbarui**: 7 Februari 2026  
+**Tanggal Diperbarui**: 13 Februari 2026  
 **Versi Python**: 3.13 (via venv)
 
 ---
@@ -190,7 +190,7 @@ kaggle datasets download -d caesarmario/krom-bank-indonesia-stock-historical-pri
 ```python
 # 1. Buka Google Colab dan jalankan di cell pertama
 !pip install --upgrade pip
-!pip install pandas==3.0.1 numpy==2.4.2 matplotlib==3.10.8 seaborn==0.13.2 scikit-learn==1.8.0 statsmodels==0.15.0 tensorflow==2.20.0 mlflow==3.9.0 prophet==1.3.0 optuna==4.6 joblib==1.5.3 pandera==0.29.0 lightgbm==4.6.0
+!pip install pandas==3.0.1 numpy==2.4.2 matplotlib==3.10.8 seaborn==0.13.2 scikit-learn==1.8.0 statsmodels==0.15.0 tensorflow==2.20.0 mlflow==3.9.0 prophet==1.3.0 optuna==4.7.0 joblib==1.5.3 pandera==0.29.0 lightgbm==4.6.0
 
 # 2. Mount Google Drive (untuk akses file)
 from google.colab import drive
@@ -364,14 +364,14 @@ Jalankan cell secara berurutan (1 → 13):
 
 ```bash
 .venv\Scripts\python.exe -m pip install --upgrade pip
-.venv\Scripts\python.exe -m pip install --no-cache-dir pandas==3.0.1 numpy==2.4.2 matplotlib==3.10.8 seaborn==0.13.2 scikit-learn==1.8.0 statsmodels==0.15.0 tensorflow==2.20.0 mlflow==3.9.0 prophet==1.3.0 optuna==4.6 joblib==1.5.3 pandera==0.29.0 lightgbm==4.6.0
+.venv\Scripts\python.exe -m pip install --no-cache-dir pandas==3.0.1 numpy==2.4.2 matplotlib==3.10.8 seaborn==0.13.2 scikit-learn==1.8.0 statsmodels==0.15.0 tensorflow==2.20.0 mlflow==3.9.0 prophet==1.3.0 optuna==4.7.0 joblib==1.5.3 pandera==0.29.0 lightgbm==4.6.0
 ```
 
 ---
 
 ## **Rekomendasi Versi Library (Teruji — Python 3.13)**
 
-Versi library yang telah diuji pada lingkungan Python 3.13 (diterapkan pada repository ini per 2026-02-07):
+Versi library yang telah diuji pada lingkungan Python 3.13 (diterapkan pada repository ini per 2026-02-13):
 
 | Library | Versi Teruji | Catatan |
 | --------- | -------------- | --------- |
@@ -387,7 +387,7 @@ Versi library yang telah diuji pada lingkungan Python 3.13 (diterapkan pada repo
 | keras | 3.0.0 | Disertakan dalam TensorFlow |
 | mlflow | 3.9.0 | Experiment tracking lokal |
 | prophet | 1.3.0 | Time-series forecasting |
-| optuna | 4.6 | Hyperparameter tuning |
+| optuna | 4.7.0 | Hyperparameter tuning |
 | joblib | 1.5.3 | Serialisasi model |
 | pandera | 0.29.0 | Data validation |
 | lightgbm | 4.6.0 | Gradient boosting |
@@ -408,7 +408,7 @@ python -m pip install --upgrade pip
 python -m pip install --no-cache-dir \
    pandas==3.0.1 numpy==2.4.2 matplotlib==3.10.8 seaborn==0.13.2 \
    scikit-learn==1.8.0 statsmodels==0.15.0 tensorflow==2.20.0 \
-   mlflow==3.9.0 prophet==1.3.0 optuna==4.6 joblib==1.5.3 pandera==0.29.0 lightgbm==4.6.0
+   mlflow==3.9.0 prophet==1.3.0 optuna==4.7.0 joblib==1.5.3 pandera==0.29.0 lightgbm==4.6.0
 ```
 
 ### Versi GPU (CUDA 12.x)
@@ -484,4 +484,4 @@ Pembagian Train/Val/Test: **70% / 15% / 15%** (time-series aware)
 
 ---
 
-**Terakhir Diperbarui**: 7 Februari 2026
+**Terakhir Diperbarui**: 13 Februari 2026
