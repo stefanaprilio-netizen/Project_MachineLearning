@@ -105,13 +105,13 @@ Project_MachineLearning/
 
 ### Long Term (Production Readiness)
 
-- [ ] Add unit tests (`pytest`) untuk preprocessing & feature engineering
-- [ ] Add data validation dengan `pandera`
-- [ ] Build Dockerfile untuk containerization
-- [ ] Create FastAPI endpoint (`/predict`)
-- [ ] Setup CI/CD (GitHub Actions) untuk lint, test, build image
-- [ ] Add monitoring: drift detection & retraining triggers
-- [ ] Deploy ke staging/production environment
+- ✅ Add unit tests (`pytest`) untuk preprocessing & feature engineering
+- ✅ Add data validation dengan `pandera`
+- ✅ Build Dockerfile untuk containerization
+- ✅ Create FastAPI endpoint (`/predict`)
+- ✅ Setup CI/CD (GitHub Actions) untuk lint, test, build image
+- ✅ Add monitoring: drift detection & retraining triggers
+- ✅ Deploy ke staging/production environment
 
 ---
 
