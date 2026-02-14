@@ -1,7 +1,7 @@
 # Rencana MLOps: Prediksi Saham KROM Bank Indonesia
 
 **Status**: Dalam Pengembangan 🚀  
-**Tanggal Diperbarui**: 13 Februari 2026  
+**Tanggal Diperbarui**: 14 Februari 2026  
 **Versi Python**: 3.13 (via venv)
 
 ---
@@ -97,11 +97,11 @@ Project_MachineLearning/
 
 ### Medium Term
 
-- [ ] Install & run Prophet baseline model
-- [ ] Train LSTM model end-to-end
-- [ ] Validate preprocessing artifacts (parquet, scaler)
-- [ ] Log all experiments to MLflow
-- [ ] Compare model metrics (RMSE, MAE, MAPE)
+- ✅ Install & run Prophet baseline model
+- ✅ Train LSTM model end-to-end
+- ✅ Validate preprocessing artifacts (parquet, scaler)
+- ✅ Log all experiments to MLflow
+- ✅ Compare model metrics (RMSE, MAE, MAPE)
 
 ### Long Term (Production Readiness)
 
@@ -484,4 +484,4 @@ Pembagian Train/Val/Test: **70% / 15% / 15%** (time-series aware)
 
 ---
 
-**Terakhir Diperbarui**: 13 Februari 2026
+**Terakhir Diperbarui**: 14 Februari 2026
