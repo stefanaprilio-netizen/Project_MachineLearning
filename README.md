@@ -60,6 +60,12 @@ Notebook interaktif lengkap dengan 12+ sel:
 ```text
 Project_MachineLearning/
 ├── mlops_plan_krom_bank.ipynb       # Main notebook
+├── main.py                           # FastAPI serving endpoint
+├── Dockerfile                        # Containerization schema
+├── test_preprocessing.py             # Unit tests for preprocessing
+├── .github/
+│   └── workflows/
+│       └── ci.yml                   # CI/CD GitHub Actions
 ├── dataset/                          # Data folder
 │   ├── BBSI.JK.csv
 │   ├── BBSI.JK_monthly.csv
@@ -68,16 +74,16 @@ Project_MachineLearning/
 │   └── README.txt
 ├── models/                           # Trained models
 │   ├── rf_baseline.pkl
-│   └── cnn_conv1d/
+│   └── cnn_conv1d.keras             # CNN Saved Model
 ├── artifacts/                        # Model artifacts
 │   ├── preprocessed.parquet
 │   ├── feature_list.txt
-│   ├── scaler.joblib
-│   └── mlruns/                      # MLflow tracking
+│   ├── scaler_x.joblib              # Feature scaler
+│   ├── scaler_y.joblib              # Target scaler
+│   └── arima_summary.txt            # ARIMA stats summary
 ├── .venv/                           # Virtual environment
 ├── .gitignore
 ├── requirements.txt                 # Pin dependencies
-├── kaggle.json                      # Template credentials
 ├── README.md                        # This file
 └── README_KAGGLE.md
 ```
