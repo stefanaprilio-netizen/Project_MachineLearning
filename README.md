@@ -44,6 +44,13 @@ Notebook interaktif lengkap dengan 12+ sel:
 | 12 | CNN (Conv1D): model + save artifacts | ✅ |
 | 13 | Markdown: Next steps checklist | ✅ |
 
+**Recent updates in notebook:**
+
+- ✔ ARIMA forecasting cell now uses rolling predictions and optional `auto_arima` for better accuracy; fixed numpy indexing bug.
+- ✔ LSTM and CNN training steps expanded with deeper architectures, callbacks (ReduceLROnPlateau, EarlyStopping), longer epochs; training loss now can approach zero.
+- ✔ Added Kaggle download snippet and environment configuration notes; dataset successfully downloaded into `dataset/`.
+- ✔ Data validation with Pandera and unit test scaffolding added in later cells.
+
 ### 3. Environment & Security
 
 - ✅ Virtual environment (venv) configured dengan Python 3.13
